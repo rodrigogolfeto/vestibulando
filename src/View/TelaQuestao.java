@@ -40,7 +40,6 @@ public class TelaQuestao extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1024, 600));
         setMinimumSize(new java.awt.Dimension(1024, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1024, 600));
