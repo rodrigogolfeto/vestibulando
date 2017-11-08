@@ -5,6 +5,8 @@
  */
 package View;
 
+import Controller.UsuarioController;
+
 /**
  *
  * @author Rodrigo Golfeto
@@ -18,6 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        txtUsuario.setText(UsuarioController.getUsuarioLogado().getNome());
     }
 
     /**
@@ -31,7 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblData = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JLabel();
         btnConfiguracao = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,10 +58,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblData.setForeground(new java.awt.Color(78, 78, 78));
         lblData.setText("11 Out 2017");
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(78, 78, 78));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Rodrigo Golfeto");
+        txtUsuario.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(78, 78, 78));
+        txtUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         btnConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-configuracoes.png"))); // NOI18N
         btnConfiguracao.setBorder(null);
@@ -124,7 +126,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(213, 213, 213)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addGap(52, 52, 52)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnConfiguracao)
                 .addGap(31, 31, 31))
@@ -151,7 +153,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(btnConfiguracao)
-                            .addComponent(jLabel1)
+                            .addComponent(txtUsuario)
                             .addComponent(lblData)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -191,7 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         super.dispose();
         TelaConfiguracao.main(null);
     }//GEN-LAST:event_btnConfiguracaoActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -234,11 +236,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblData;
+    private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

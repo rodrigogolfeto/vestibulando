@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.TelaLoginController;
 import static java.lang.System.exit;
 
 /**
@@ -12,6 +13,8 @@ import static java.lang.System.exit;
  * @author Rodrigo Golfeto
  */
 public class TelaLogin extends javax.swing.JFrame {
+    
+    private TelaLoginController tlC;
 
     /**
      * Creates new form TelaLogin
@@ -20,6 +23,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        tlC = new TelaLoginController();
     }
 
     /**
@@ -57,7 +61,6 @@ public class TelaLogin extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1024, 600));
         setMinimumSize(new java.awt.Dimension(1024, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 600));
 
         base.setBackground(new java.awt.Color(255, 255, 255));
         base.setMaximumSize(new java.awt.Dimension(1024, 600));
@@ -128,6 +131,11 @@ public class TelaLogin extends javax.swing.JFrame {
         txtEmail.setForeground(new java.awt.Color(255, 255, 255));
         txtEmail.setText("E-mail");
         txtEmail.setBorder(null);
+        txtEmail.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtEmailFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelDiretaLayout = new javax.swing.GroupLayout(painelDireta);
         painelDireta.setLayout(painelDiretaLayout);
@@ -209,11 +217,21 @@ public class TelaLogin extends javax.swing.JFrame {
         txtLogin.setForeground(new java.awt.Color(108, 108, 108));
         txtLogin.setText("Usuário");
         txtLogin.setBorder(null);
+        txtLogin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLoginFocusGained(evt);
+            }
+        });
 
         txtSenha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         txtSenha.setForeground(new java.awt.Color(108, 108, 108));
         txtSenha.setText("jPassword");
         txtSenha.setBorder(null);
+        txtSenha.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtSenhaFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout baseLayout = new javax.swing.GroupLayout(base);
         base.setLayout(baseLayout);
@@ -292,8 +310,7 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        super.dispose();
-        TelaPrincipal.main(null);
+        tlC.acessar(txtLogin.getText(),txtSenha.getText(),this);
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -305,6 +322,24 @@ public class TelaLogin extends javax.swing.JFrame {
         super.dispose();
         exit(0);
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void txtLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLoginFocusGained
+        if(txtLogin.getText().equals("Usuário")){
+            txtLogin.setText("");
+        }
+    }//GEN-LAST:event_txtLoginFocusGained
+
+    private void txtSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSenhaFocusGained
+        if(txtSenha.getText().equals("jPassword")){
+            txtSenha.setText("");
+        }
+    }//GEN-LAST:event_txtSenhaFocusGained
+
+    private void txtEmailFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEmailFocusGained
+        if(txtEmail.getText().equals("E-mail")){
+            txtEmail.setText("");
+        }
+    }//GEN-LAST:event_txtEmailFocusGained
 
     /**
      * @param args the command line arguments
