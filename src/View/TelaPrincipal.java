@@ -5,14 +5,16 @@
  */
 package View;
 
+import Controller.TelaPrincipalController;
 import Controller.UsuarioController;
-import static java.lang.System.exit;
 
 /**
  *
  * @author Rodrigo Golfeto
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    private TelaPrincipalController telaPrincipalC;
 
     /**
      * Creates new form TelaPrincipal
@@ -22,6 +24,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         txtUsuario.setText(UsuarioController.getUsuarioLogado().getNome());
+        telaPrincipalC = new TelaPrincipalController();
     }
 
     /**
@@ -40,11 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnCNT = new javax.swing.JButton();
+        btnCHT = new javax.swing.JButton();
+        btnLCT = new javax.swing.JButton();
+        btnMT = new javax.swing.JButton();
+        btnGSTA = new javax.swing.JButton();
         btnFecharSessao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -87,35 +90,60 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("<html><center>Software Desenvolvido na Disciplina de APSOO T02 - 2017/2<br>Aluno: Rodrigo Golfeto de Queiroz</center></html>");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-cnt.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCNT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-cnt.png"))); // NOI18N
+        btnCNT.setBorder(null);
+        btnCNT.setBorderPainted(false);
+        btnCNT.setContentAreaFilled(false);
+        btnCNT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCNT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCNTMouseClicked(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-cht.png"))); // NOI18N
-        jButton3.setBorder(null);
-        jButton3.setBorderPainted(false);
-        jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCHT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-cht.png"))); // NOI18N
+        btnCHT.setBorder(null);
+        btnCHT.setBorderPainted(false);
+        btnCHT.setContentAreaFilled(false);
+        btnCHT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCHT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCHTMouseClicked(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-lct.png"))); // NOI18N
-        jButton4.setBorder(null);
-        jButton4.setBorderPainted(false);
-        jButton4.setContentAreaFilled(false);
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLCT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-lct.png"))); // NOI18N
+        btnLCT.setBorder(null);
+        btnLCT.setBorderPainted(false);
+        btnLCT.setContentAreaFilled(false);
+        btnLCT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLCT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnLCTMouseClicked(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-mst.png"))); // NOI18N
-        jButton5.setBorder(null);
-        jButton5.setBorderPainted(false);
-        jButton5.setContentAreaFilled(false);
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-mst.png"))); // NOI18N
+        btnMT.setBorder(null);
+        btnMT.setBorderPainted(false);
+        btnMT.setContentAreaFilled(false);
+        btnMT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnMTMouseClicked(evt);
+            }
+        });
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-gta.png"))); // NOI18N
-        jButton6.setBorder(null);
-        jButton6.setBorderPainted(false);
-        jButton6.setContentAreaFilled(false);
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGSTA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-gta.png"))); // NOI18N
+        btnGSTA.setBorder(null);
+        btnGSTA.setBorderPainted(false);
+        btnGSTA.setContentAreaFilled(false);
+        btnGSTA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGSTA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGSTAMouseClicked(evt);
+            }
+        });
 
         btnFecharSessao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-fechar-sessao.png"))); // NOI18N
         btnFecharSessao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -145,11 +173,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6))
+                            .addComponent(btnCHT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCNT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnLCT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGSTA))
                         .addGap(309, 309, 309))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -177,15 +205,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel3)
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addComponent(btnCNT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btnCHT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
+                .addComponent(btnLCT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(btnMT)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton6)
+                .addComponent(btnGSTA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
@@ -215,6 +243,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         super.dispose();
         TelaLogin.main(null);
     }//GEN-LAST:event_btnFecharSessaoMouseClicked
+
+    private void btnCNTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCNTMouseClicked
+        // TODO add your handling code here: 
+        telaPrincipalC.acessarQuestao("CNT",this);
+    }//GEN-LAST:event_btnCNTMouseClicked
+
+    private void btnCHTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCHTMouseClicked
+        // TODO add your handling code here:
+        telaPrincipalC.acessarQuestao("CHT",this);
+    }//GEN-LAST:event_btnCHTMouseClicked
+
+    private void btnLCTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLCTMouseClicked
+        // TODO add your handling code here:
+        telaPrincipalC.acessarQuestao("LCT",this);
+    }//GEN-LAST:event_btnLCTMouseClicked
+
+    private void btnMTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMTMouseClicked
+        // TODO add your handling code here:
+        telaPrincipalC.acessarQuestao("MT",this);
+    }//GEN-LAST:event_btnMTMouseClicked
+
+    private void btnGSTAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGSTAMouseClicked
+        // TODO add your handling code here:
+        telaPrincipalC.acessarQuestao("GSTA",this);
+    }//GEN-LAST:event_btnGSTAMouseClicked
     
     /**
      * @param args the command line arguments
@@ -252,13 +305,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCHT;
+    private javax.swing.JButton btnCNT;
     private javax.swing.JButton btnConfiguracao;
     private javax.swing.JLabel btnFecharSessao;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnGSTA;
+    private javax.swing.JButton btnLCT;
+    private javax.swing.JButton btnMT;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -5,11 +5,15 @@
  */
 package View;
 
+import Controller.TelaQuestaoController;
+
 /**
  *
  * @author Rodrigo Golfeto
  */
 public class TelaQuestao extends javax.swing.JFrame {
+    
+    private TelaQuestaoController telaQuestaoC;
 
     /**
      * Creates new form TelaQuestao
@@ -18,6 +22,7 @@ public class TelaQuestao extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        telaQuestaoC = new TelaQuestaoController();
     }
 
     /**
@@ -31,10 +36,21 @@ public class TelaQuestao extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblData = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        btnConfiguracao = new javax.swing.JButton();
+        txtDesistir = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnDesistir = new javax.swing.JLabel();
+        containerQuestao = new javax.swing.JScrollPane();
+        painelQuestao = new javax.swing.JPanel();
+        txtDescricao = new javax.swing.JLabel();
+        txtAltA = new javax.swing.JLabel();
+        txtAltB = new javax.swing.JLabel();
+        txtAltC = new javax.swing.JLabel();
+        txtAltD = new javax.swing.JLabel();
+        txtAltE = new javax.swing.JLabel();
+        btnAnterior = new javax.swing.JLabel();
+        btnProximo = new javax.swing.JLabel();
+        txtNavegacao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1024, 600));
@@ -49,18 +65,14 @@ public class TelaQuestao extends javax.swing.JFrame {
         lblData.setForeground(new java.awt.Color(78, 78, 78));
         lblData.setText("11 Out 2017");
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(78, 78, 78));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel1.setText("Rodrigo Golfeto");
-
-        btnConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-configuracoes.png"))); // NOI18N
-        btnConfiguracao.setBorder(null);
-        btnConfiguracao.setBorderPainted(false);
-        btnConfiguracao.setContentAreaFilled(false);
-        btnConfiguracao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfiguracaoActionPerformed(evt);
+        txtDesistir.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDesistir.setForeground(new java.awt.Color(248, 8, 79));
+        txtDesistir.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtDesistir.setText("desistir");
+        txtDesistir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtDesistir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDesistirMouseClicked(evt);
             }
         });
 
@@ -72,42 +84,151 @@ public class TelaQuestao extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("<html><center>Software Desenvolvido na Disciplina de APSOO T02 - 2017/2<br>Aluno: Rodrigo Golfeto de Queiroz</center></html>");
 
+        btnDesistir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-fechar-sessao.png"))); // NOI18N
+        btnDesistir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDesistir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDesistirMouseClicked(evt);
+            }
+        });
+
+        containerQuestao.setBackground(new java.awt.Color(255, 255, 255));
+        containerQuestao.setBorder(null);
+        containerQuestao.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        containerQuestao.setMaximumSize(null);
+        containerQuestao.setMinimumSize(null);
+
+        painelQuestao.setBackground(new java.awt.Color(255, 255, 255));
+        painelQuestao.setMaximumSize(null);
+        painelQuestao.setMinimumSize(null);
+
+        txtDescricao.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtDescricao.setText("<html>1) descricao</jhtml>");
+        txtDescricao.setToolTipText("");
+
+        txtAltA.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtAltA.setText("<html>a) alternativa</html>");
+        txtAltA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtAltB.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtAltB.setText("<html>b) alternativa</html>");
+        txtAltB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtAltC.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtAltC.setText("<html>c) alternativa</html>");
+        txtAltC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtAltD.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtAltD.setText("<html>d) alternativa</html>");
+        txtAltD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        txtAltE.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtAltE.setText("<html>e) alternativa</html>");
+        txtAltE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout painelQuestaoLayout = new javax.swing.GroupLayout(painelQuestao);
+        painelQuestao.setLayout(painelQuestaoLayout);
+        painelQuestaoLayout.setHorizontalGroup(
+            painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelQuestaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelQuestaoLayout.createSequentialGroup()
+                        .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtAltA, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtAltB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
+                                .addComponent(txtAltC, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtAltD)
+                    .addComponent(txtAltE))
+                .addContainerGap())
+        );
+        painelQuestaoLayout.setVerticalGroup(
+            painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelQuestaoLayout.createSequentialGroup()
+                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtAltA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAltB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAltC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAltD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtAltE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        containerQuestao.setViewportView(painelQuestao);
+
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior.png"))); // NOI18N
+
+        btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-proximo.png"))); // NOI18N
+
+        txtNavegacao.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        txtNavegacao.setForeground(new java.awt.Color(109, 109, 109));
+        txtNavegacao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        txtNavegacao.setText("1/10");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblData)
-                .addGap(213, 213, 213)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                .addGap(52, 52, 52)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConfiguracao)
-                .addGap(31, 31, 31))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(containerQuestao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblData)
+                        .addGap(213, 213, 213)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(266, 266, 266)
+                        .addComponent(txtDesistir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnDesistir)))
+                .addGap(24, 24, 24))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addComponent(btnAnterior)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtNavegacao, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnProximo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                            .addComponent(btnConfiguracao)
-                            .addComponent(jLabel1)
-                            .addComponent(lblData)))
+                            .addComponent(txtDesistir)
+                            .addComponent(lblData)
+                            .addComponent(btnDesistir)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addComponent(containerQuestao, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAnterior)
+                    .addComponent(btnProximo)
+                    .addComponent(txtNavegacao))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
         );
+
+        containerQuestao.getVerticalScrollBar().setUI(new ScrollbarPersonalizado());
+        containerQuestao.getHorizontalScrollBar().setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,10 +244,15 @@ public class TelaQuestao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracaoActionPerformed
-        super.dispose();
-        TelaConfiguracao.main(null);
-    }//GEN-LAST:event_btnConfiguracaoActionPerformed
+    private void txtDesistirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDesistirMouseClicked
+        //vai pra tela principal
+        telaQuestaoC.desistir(this);
+    }//GEN-LAST:event_txtDesistirMouseClicked
+
+    private void btnDesistirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDesistirMouseClicked
+        //vai pra tela principal
+        telaQuestaoC.desistir(this);
+    }//GEN-LAST:event_btnDesistirMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,7 +265,7 @@ public class TelaQuestao extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -164,11 +290,22 @@ public class TelaQuestao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfiguracao;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel btnAnterior;
+    private javax.swing.JLabel btnDesistir;
+    private javax.swing.JLabel btnProximo;
+    private javax.swing.JScrollPane containerQuestao;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblData;
+    private javax.swing.JPanel painelQuestao;
+    private javax.swing.JLabel txtAltA;
+    private javax.swing.JLabel txtAltB;
+    private javax.swing.JLabel txtAltC;
+    private javax.swing.JLabel txtAltD;
+    private javax.swing.JLabel txtAltE;
+    private javax.swing.JLabel txtDescricao;
+    private javax.swing.JLabel txtDesistir;
+    private javax.swing.JLabel txtNavegacao;
     // End of variables declaration//GEN-END:variables
 }
