@@ -23,6 +23,12 @@ public class TelaQuestao extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         telaQuestaoC = new TelaQuestaoController();
+        this.txtDescricao.setText("<html>1) "+TelaQuestaoController.getQuestao()[0].getDescricao()+"</html>");
+        this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[0].getAlts()[0].getDescricao()+"</html>");
+        this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[0].getAlts()[1].getDescricao()+"</html>");
+        this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[0].getAlts()[2].getDescricao()+"</html>");
+        this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[0].getAlts()[3].getDescricao()+"</html>");
+        this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[0].getAlts()[4].getDescricao()+"</html>");
     }
 
     /**
@@ -100,7 +106,6 @@ public class TelaQuestao extends javax.swing.JFrame {
 
         painelQuestao.setBackground(new java.awt.Color(255, 255, 255));
         painelQuestao.setMaximumSize(null);
-        painelQuestao.setMinimumSize(null);
 
         txtDescricao.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtDescricao.setText("<html>1) descricao</jhtml>");
@@ -133,16 +138,14 @@ public class TelaQuestao extends javax.swing.JFrame {
             .addGroup(painelQuestaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAltD, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAltE, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtAltC)
+                    .addComponent(txtAltB)
                     .addGroup(painelQuestaoLayout.createSequentialGroup()
-                        .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(painelQuestaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtAltA, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtAltB, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 908, Short.MAX_VALUE)
-                                .addComponent(txtAltC, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(txtAltD)
-                    .addComponent(txtAltE))
+                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 936, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 13, Short.MAX_VALUE))
+                    .addComponent(txtAltA))
                 .addContainerGap())
         );
         painelQuestaoLayout.setVerticalGroup(

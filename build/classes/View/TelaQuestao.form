@@ -213,9 +213,6 @@
                 <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="null"/>
                 </Property>
-                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
               </Properties>
 
               <Layout>
@@ -224,19 +221,15 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtAltD" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtAltE" alignment="1" max="32767" attributes="0"/>
+                              <Component id="txtAltC" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtAltB" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtDescricao" min="-2" pref="936" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="txtAltA" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtAltB" alignment="0" pref="908" max="32767" attributes="0"/>
-                                          <Component id="txtAltC" alignment="0" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="txtDescricao" min="-2" pref="936" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="13" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="txtAltD" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtAltE" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtAltA" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>

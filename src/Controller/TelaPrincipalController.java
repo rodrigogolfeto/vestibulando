@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class TelaPrincipalController {
     public void acessarQuestao(String categoria, JFrame telaPrincipal) {
-        System.out.println("Abrir tela de questão pra categoria "+categoria);
+        TelaQuestaoController.montarQuestoes(categoria);
         telaPrincipal.dispose();
         TelaQuestao.main(null);        
     }
