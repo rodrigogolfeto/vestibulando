@@ -355,8 +355,19 @@ public class TelaQuestao extends javax.swing.JFrame {
             this.atualizarNavegacao();
             this.marcarQuestao(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlternativaEscolhida());
         }else{
-            //TODO
-            System.out.println("resultado");
+            if(TelaQuestaoController.validarSimulado()==-1){
+                TelaQuestaoController.finalizarSimulado(this);
+            }else{
+                this.questaoAtual = TelaQuestaoController.validarSimulado();
+                this.txtDescricao.setText("<html>"+(this.questaoAtual+1)+") "+TelaQuestaoController.getQuestao()[this.questaoAtual].getDescricao()+"<br><br></html>");
+                this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0].getDescricao()+"</html>");
+                this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1].getDescricao()+"</html>");
+                this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2].getDescricao()+"</html>");
+                this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3].getDescricao()+"</html>");
+                this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4].getDescricao()+"</html>");
+                this.atualizarNavegacao();
+                this.marcarQuestao(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlternativaEscolhida());
+            }
         }
     }//GEN-LAST:event_btnProximoMouseClicked
 

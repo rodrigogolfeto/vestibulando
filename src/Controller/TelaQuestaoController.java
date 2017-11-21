@@ -7,8 +7,8 @@ package Controller;
 
 import Model.Questao;
 import Model.AbstractFactory;
-import Model.Usuario;
 import View.TelaPrincipal;
+import View.TelaResultado;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
@@ -102,4 +102,17 @@ public class TelaQuestaoController extends AbstractFactory {
         TelaPrincipal.main(null);
     }
     
+    public static int validarSimulado() {
+        for(int i=0;i<10;i++){
+            if(questao[i].getAlternativaEscolhida()==null){
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public static void finalizarSimulado(JFrame telaQuestao){
+        telaQuestao.dispose();
+        TelaResultado.main(null);
+    }
 }

@@ -5,17 +5,26 @@
  */
 package View;
 
+import Controller.TelaResultadoController;
+import Controller.UsuarioController;
+
 /**
  *
  * @author Rodrigo Golfeto
  */
 public class TelaResultado extends javax.swing.JFrame {
-
-    /**
-     * Creates new form TelaResultado
-     */
+    
     public TelaResultado() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        txtUsuario.setText(UsuarioController.getUsuarioLogado().getNome());
+        TelaResultadoController.salvarSimulado();
+        
+        imgResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/resultado-"+TelaResultadoController.getAcertos()+"0.png"))); // NOI18N
+        txtResultado.setText(TelaResultadoController.getDesempenho());
+        txtResultado.setForeground(new java.awt.Color(TelaResultadoController.getColorR(), TelaResultadoController.getColorG(), TelaResultadoController.getColorB()));
+        txtTempoGasto.setText(TelaResultadoController.getTempoSimulado());
     }
 
     /**
@@ -27,25 +36,189 @@ public class TelaResultado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblData = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnFecharSessao = new javax.swing.JLabel();
+        btnConfiguracao = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JLabel();
+        imgResultado = new javax.swing.JLabel();
+        txtIntrodTemp = new javax.swing.JLabel();
+        txtTempoGasto = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtResultado = new javax.swing.JLabel();
+        txtContinuarPraticando = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1024, 600));
+        setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1024, 600));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1024, 600));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 600));
+
+        lblData.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblData.setForeground(new java.awt.Color(78, 78, 78));
+        lblData.setText("11 Out 2017");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/logo-login.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(109, 109, 109));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("<html><center>Software Desenvolvido na Disciplina de APSOO T02 - 2017/2<br>Aluno: Rodrigo Golfeto de Queiroz</center></html>");
+
+        btnFecharSessao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-fechar-sessao.png"))); // NOI18N
+        btnFecharSessao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFecharSessao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFecharSessaoMouseClicked(evt);
+            }
+        });
+
+        btnConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/icone-configuracoes.png"))); // NOI18N
+        btnConfiguracao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnConfiguracao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnConfiguracaoMouseClicked(evt);
+            }
+        });
+
+        txtUsuario.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(78, 78, 78));
+        txtUsuario.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
+        imgResultado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/resultado-20.png"))); // NOI18N
+
+        txtIntrodTemp.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+        txtIntrodTemp.setForeground(new java.awt.Color(78, 78, 78));
+        txtIntrodTemp.setText("Tempo gasto para concluir o simulado");
+
+        txtTempoGasto.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        txtTempoGasto.setForeground(new java.awt.Color(78, 78, 78));
+        txtTempoGasto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtTempoGasto.setText("12min : 47seg");
+
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(78, 78, 78));
+        jLabel3.setText("Seu resultado foi");
+
+        txtResultado.setFont(new java.awt.Font("Ubuntu", 0, 30)); // NOI18N
+        txtResultado.setForeground(new java.awt.Color(4, 219, 75));
+        txtResultado.setText("Bom");
+
+        txtContinuarPraticando.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
+        txtContinuarPraticando.setForeground(new java.awt.Color(78, 78, 78));
+        txtContinuarPraticando.setText("Continue praticando");
+        txtContinuarPraticando.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtContinuarPraticando.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtContinuarPraticandoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblData)
+                        .addGap(213, 213, 213)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
+                        .addComponent(btnConfiguracao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnFecharSessao)
+                        .addGap(16, 16, 16)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtIntrodTemp)
+                    .addComponent(txtTempoGasto))
+                .addGap(36, 36, 36)
+                .addComponent(imgResultado)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(txtResultado)
+                    .addComponent(txtContinuarPraticando))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(lblData))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(btnConfiguracao)
+                            .addComponent(btnFecharSessao)
+                            .addComponent(txtUsuario)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addComponent(txtIntrodTemp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTempoGasto))
+                    .addComponent(imgResultado)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtResultado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtContinuarPraticando)))
+                .addGap(70, 70, 70)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    private void txtContinuarPraticandoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtContinuarPraticandoMouseClicked
+        TelaResultadoController.irParaTelaPrincipal(this);
+    }//GEN-LAST:event_txtContinuarPraticandoMouseClicked
+
+    private void btnFecharSessaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharSessaoMouseClicked
+        TelaResultadoController.irParaTelaPrincipal(this);
+    }//GEN-LAST:event_btnFecharSessaoMouseClicked
+
+    private void btnConfiguracaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnConfiguracaoMouseClicked
+        // TODO add your handling code here:
+        TelaResultadoController.irParaTelaConfiguracao(this);
+    }//GEN-LAST:event_btnConfiguracaoMouseClicked
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -79,5 +252,18 @@ public class TelaResultado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnConfiguracao;
+    private javax.swing.JLabel btnFecharSessao;
+    private javax.swing.JLabel imgResultado;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblData;
+    private javax.swing.JLabel txtContinuarPraticando;
+    private javax.swing.JLabel txtIntrodTemp;
+    private javax.swing.JLabel txtResultado;
+    private javax.swing.JLabel txtTempoGasto;
+    private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,29 +5,25 @@
  */
 package Model;
 
-import java.sql.Date;
+import java.util.Date;
 
-/**
- *
- * @author Rodrigo Golfeto
- */
 public class Questao {
     
     private String descricao;
     private Alternativa alts[];
     private int totalAlternativas = 0;
     private Alternativa alternativaEscolhida;
-    private Date inicio;
-    private Date fim;
-    
-    
+    private Date dataInicial;
+        
     public Questao(){
         this.alts = new Alternativa[5];
+        dataInicial = new Date();
     }
     
     public Questao(String descricao, Alternativa[] alts) {
         this.descricao = descricao;
         this.alts = new Alternativa[5];
+        dataInicial = new Date();
     }
 
     public String getDescricao() {
@@ -61,19 +57,19 @@ public class Questao {
         this.alternativaEscolhida = alternativaEscolhida;
     }
 
-    public Date getInicio() {
-        return inicio;
+    public int getTotalAlternativas() {
+        return totalAlternativas;
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    public void setTotalAlternativas(int totalAlternativas) {
+        this.totalAlternativas = totalAlternativas;
     }
 
-    public Date getFim() {
-        return fim;
+    public Date getDataInicial() {
+        return dataInicial;
     }
 
-    public void setFim(Date fim) {
-        this.fim = fim;
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
     }
 }
