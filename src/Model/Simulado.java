@@ -10,6 +10,8 @@ package Model;
  * @author Rodrigo Golfeto
  */
 public class Simulado {
+
+    private int id;
     private Usuario usuario;
     private String tempo;
     private int acertos;
@@ -23,6 +25,22 @@ public class Simulado {
         this.tempo = tempo;
         this.acertos = acertos;
         this.erros = erros;
+    }
+    
+    public Simulado(int id, Usuario usuario, String tempo, int acertos, int erros) {
+        this.id = id;
+        this.usuario = usuario;
+        this.tempo = tempo;
+        this.acertos = acertos;
+        this.erros = erros;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Usuario getUsuario() {
@@ -56,6 +74,5 @@ public class Simulado {
     public void setErros(int erros) {
         this.erros = erros;
     }
-    
-    
+
 }

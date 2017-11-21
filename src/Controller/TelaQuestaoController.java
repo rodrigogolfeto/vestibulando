@@ -64,6 +64,7 @@ public class TelaQuestaoController extends AbstractFactory {
                 
                 //Descricao da questao
                 questao[i].setDescricao(resultado.getString("que_descricao"));
+                questao[i].setId(resultado.getInt("que_id"));
                 
                 //Alternativas
                 String sql2 = "SELECT * FROM alternativa WHERE alt_que_id='"+resultado.getInt("que_id")+"' ORDER BY RAND() LIMIT 5";
@@ -72,7 +73,8 @@ public class TelaQuestaoController extends AbstractFactory {
                     ResultSet resultado2 = dao.connection.prepareStatement(sql2).executeQuery();
                     while(resultado2.next()){
                         boolean sn = resultado2.getString("alt_correta").equals("S");
-                        questao[i].adicionarAlternativa(resultado2.getString("alt_descricao"),sn);
+                        int id = resultado2.getInt("alt_id");
+                        questao[i].adicionarAlternativa(id,resultado2.getString("alt_descricao"),sn);
                     }
                 } catch (SQLException ex) {
                     System.out.println("Erro no SQL de Alternativas!");

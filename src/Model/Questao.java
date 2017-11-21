@@ -8,22 +8,31 @@ package Model;
 import java.util.Date;
 
 public class Questao {
-    
+
+    private int id;
     private String descricao;
     private Alternativa alts[];
     private int totalAlternativas = 0;
     private Alternativa alternativaEscolhida;
     private Date dataInicial;
-        
-    public Questao(){
+
+    public Questao() {
         this.alts = new Alternativa[5];
         dataInicial = new Date();
     }
-    
+
     public Questao(String descricao, Alternativa[] alts) {
         this.descricao = descricao;
         this.alts = new Alternativa[5];
         dataInicial = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -41,14 +50,15 @@ public class Questao {
     public void setAlts(Alternativa[] alts) {
         this.alts = alts;
     }
-    
-    public void adicionarAlternativa(String descricao,boolean resultado){
+
+    public void adicionarAlternativa(int id,String descricao, boolean resultado) {
         alts[totalAlternativas] = new Alternativa();
+        alts[totalAlternativas].setId(id);
         alts[totalAlternativas].setDescricao(descricao);
         alts[totalAlternativas].setResultado(resultado);
         totalAlternativas++;
     }
-    
+
     public Alternativa getAlternativaEscolhida() {
         return alternativaEscolhida;
     }

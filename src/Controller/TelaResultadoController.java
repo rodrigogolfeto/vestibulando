@@ -10,7 +10,13 @@ import Model.Questao;
 import Model.Simulado;
 import View.TelaConfiguracao;
 import View.TelaPrincipal;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -36,7 +42,6 @@ public class TelaResultadoController extends AbstractFactory {
 
         dataFinal = new Date();
 
-        simulado = new Simulado();
         int controlaAcertos = 0;
         int controlaErros = 0;
 
@@ -75,17 +80,47 @@ public class TelaResultadoController extends AbstractFactory {
             setColorR(4);
             setColorG(219);
             setColorB(75);
-        }    
-        
-        setSegundo(getIntervaloSegundo(TelaQuestaoController.getQuestao()[0].getDataInicial(),dataFinal));
-        setMinuto(getIntervaloMinuto(TelaQuestaoController.getQuestao()[0].getDataInicial(),dataFinal));
-        
-        if(getMinuto()>0){
-            setSegundo(getSegundo()-(60*getMinuto()));
-            setTempoSimulado(getMinuto()+"min : "+getSegundo()+"seg");
-        }else{
-            setTempoSimulado("0min : "+getSegundo()+"seg");
         }
+
+        setSegundo(getIntervaloSegundo(TelaQuestaoController.getQuestao()[0].getDataInicial(), dataFinal));
+        setMinuto(getIntervaloMinuto(TelaQuestaoController.getQuestao()[0].getDataInicial(), dataFinal));
+
+        if (getMinuto() > 0) {
+            setSegundo(getSegundo() - (60 * getMinuto()));
+            setTempoSimulado(getMinuto() + "min : " + getSegundo() + "seg");
+        } else {
+            setTempoSimulado("0min : " + getSegundo() + "seg");
+        }
+
+        simulado = new Simulado(UsuarioController.getUsuarioLogado(), getMinuto() + "min : " + getSegundo() + "seg", getAcertos(), getErros());
+
+        //criar simulado, persistencia no banco
+        String sql = "INSERT INTO simulado SET "; 
+        sql+= "sim_usu_id='"+UsuarioController.getUsuarioLogado().getCid()+"'";
+        sql+= ",sim_tempo='"+getTempoSimulado()+"'";
+        sql+= ",sim_acertos='"+getAcertos()+"'";
+        sql+= ",sim_erros='"+getErros()+"'";
+        
+        
+        try {
+            dao.conectar();
+            PreparedStatement rs = dao.connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            rs.executeUpdate();
+            ResultSet r = rs.getGeneratedKeys();
+            int lastId = 0;
+            if(r.next()){
+                lastId = r.getInt(1);
+            }
+            
+            for(int i=0;i<10;i++){                
+                sql = "INSERT INTO simulado_questao SET siq_sim_id='"+lastId+"',sig_que_id='"+TelaQuestaoController.getQuestao()[i].getId()+"',sig_alt_id='"+TelaQuestaoController.getQuestao()[i].getAlternativaEscolhida().getId()+"'";
+                rs = dao.connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+                rs.executeUpdate();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaResultadoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     public static void irParaTelaPrincipal(JFrame telaSimulado) {
@@ -191,7 +226,5 @@ public class TelaResultadoController extends AbstractFactory {
     public static void setMinuto(int minuto) {
         TelaResultadoController.minuto = minuto;
     }
-    
-    
-    
+
 }

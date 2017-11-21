@@ -10,17 +10,25 @@ package Model;
  * @author Rodrigo Golfeto
  */
 public class Alternativa {
-    
+
+    private int id;
     private String descricao;
     private boolean resultado;
 
-    public Alternativa(){
-        
+    public Alternativa() {
     }
-    
+
     public Alternativa(String descricao, boolean resultado) {
         this.descricao = descricao;
         this.resultado = resultado;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescricao() {
@@ -42,5 +50,5 @@ public class Alternativa {
     @Override
     public String toString() {
         return "Alternativa{" + "descricao=" + descricao + ", resultado=" + resultado + '}';
-    }    
+    }
 }
