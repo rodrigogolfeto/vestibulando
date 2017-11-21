@@ -6,6 +6,7 @@
 package View;
 
 import Controller.TelaQuestaoController;
+import Controller.UsuarioController;
 import Model.Alternativa;
 import java.awt.Color;
 
@@ -33,6 +34,7 @@ public class TelaQuestao extends javax.swing.JFrame {
         this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3].getDescricao()+"</html>");
         this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4].getDescricao()+"</html>");
         btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior-vazio.png")));
+        lblData.setText(UsuarioController.getDataAtual());
     }
 
     /**

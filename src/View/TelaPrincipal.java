@@ -25,6 +25,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.setResizable(false);
         txtUsuario.setText(UsuarioController.getUsuarioLogado().getNome());
         telaPrincipalC = new TelaPrincipalController();
+        lblData.setText(UsuarioController.getDataAtual());
     }
 
     /**

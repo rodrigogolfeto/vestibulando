@@ -10,12 +10,13 @@ package Model;
  * @author Rodrigo Golfeto
  */
 public class Usuario {
-    
+
     private int cid;
     private String nome;
     private String email;
     private String username;
     private String senha;
+    private String administrador;
 
     public Usuario() {
     }
@@ -27,8 +28,6 @@ public class Usuario {
         this.username = username;
         this.senha = senha;
     }
-    
-    
 
     public int getCid() {
         return cid;
@@ -69,9 +68,55 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
-    
-    
-    
+
+    public String getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(String administrador) {
+        this.administrador = administrador;
+    }
+
+    public String mesTextual(int mes) {
+        String txt = "";
+        switch (mes) {
+            case 1:
+                txt = "Jan";
+                break;
+            case 2:
+                txt = "Fev";
+                break;
+            case 3:
+                txt = "Mar";
+                break;
+            case 4:
+                txt = "Abr";
+                break;
+            case 5:
+                txt = "Mai";
+                break;
+            case 6:
+                txt = "Jun";
+                break;
+            case 7:
+                txt = "Jul";
+                break;
+            case 8:
+                txt = "Ago";
+                break;
+            case 9:
+                txt = "Set";
+                break;
+            case 10:
+                txt = "Out";
+                break;
+            case 11:
+                txt = "Nov";
+                break;
+            case 12:
+                txt = "Dez";
+                break;
+        }
+        return txt;
+    }
 }

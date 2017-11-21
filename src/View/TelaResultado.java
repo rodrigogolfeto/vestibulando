@@ -25,6 +25,7 @@ public class TelaResultado extends javax.swing.JFrame {
         txtResultado.setText(TelaResultadoController.getDesempenho());
         txtResultado.setForeground(new java.awt.Color(TelaResultadoController.getColorR(), TelaResultadoController.getColorG(), TelaResultadoController.getColorB()));
         txtTempoGasto.setText(TelaResultadoController.getTempoSimulado());
+        lblData.setText(UsuarioController.getDataAtual());
     }
 
     /**
