@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Questao;
 import Model.AbstractFactory;
 import Model.Usuario;
 import View.TelaPrincipal;

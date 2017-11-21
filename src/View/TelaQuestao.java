@@ -6,6 +6,8 @@
 package View;
 
 import Controller.TelaQuestaoController;
+import Model.Alternativa;
+import java.awt.Color;
 
 /**
  *
@@ -14,6 +16,7 @@ import Controller.TelaQuestaoController;
 public class TelaQuestao extends javax.swing.JFrame {
     
     private TelaQuestaoController telaQuestaoC;
+    private int questaoAtual = 0;
 
     /**
      * Creates new form TelaQuestao
@@ -23,12 +26,13 @@ public class TelaQuestao extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         telaQuestaoC = new TelaQuestaoController();
-        this.txtDescricao.setText("<html>1) "+TelaQuestaoController.getQuestao()[0].getDescricao()+"</html>");
-        this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[0].getAlts()[0].getDescricao()+"</html>");
-        this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[0].getAlts()[1].getDescricao()+"</html>");
-        this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[0].getAlts()[2].getDescricao()+"</html>");
-        this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[0].getAlts()[3].getDescricao()+"</html>");
-        this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[0].getAlts()[4].getDescricao()+"</html>");
+        this.txtDescricao.setText("<html>"+(this.questaoAtual+1)+") "+TelaQuestaoController.getQuestao()[this.questaoAtual].getDescricao()+"<br><br></html>");
+        this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0].getDescricao()+"</html>");
+        this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1].getDescricao()+"</html>");
+        this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2].getDescricao()+"</html>");
+        this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3].getDescricao()+"</html>");
+        this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4].getDescricao()+"</html>");
+        btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior-vazio.png")));
     }
 
     /**
@@ -114,22 +118,47 @@ public class TelaQuestao extends javax.swing.JFrame {
         txtAltA.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtAltA.setText("<html>a) alternativa</html>");
         txtAltA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAltA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAltAMouseClicked(evt);
+            }
+        });
 
         txtAltB.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtAltB.setText("<html>b) alternativa</html>");
         txtAltB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAltB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAltBMouseClicked(evt);
+            }
+        });
 
         txtAltC.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtAltC.setText("<html>c) alternativa</html>");
         txtAltC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAltC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAltCMouseClicked(evt);
+            }
+        });
 
         txtAltD.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtAltD.setText("<html>d) alternativa</html>");
         txtAltD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAltD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAltDMouseClicked(evt);
+            }
+        });
 
         txtAltE.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtAltE.setText("<html>e) alternativa</html>");
         txtAltE.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        txtAltE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtAltEMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelQuestaoLayout = new javax.swing.GroupLayout(painelQuestao);
         painelQuestao.setLayout(painelQuestaoLayout);
@@ -167,8 +196,20 @@ public class TelaQuestao extends javax.swing.JFrame {
         containerQuestao.setViewportView(painelQuestao);
 
         btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior.png"))); // NOI18N
+        btnAnterior.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAnteriorMouseClicked(evt);
+            }
+        });
 
         btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-proximo.png"))); // NOI18N
+        btnProximo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnProximo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnProximoMouseClicked(evt);
+            }
+        });
 
         txtNavegacao.setFont(new java.awt.Font("Ubuntu", 0, 14)); // NOI18N
         txtNavegacao.setForeground(new java.awt.Color(109, 109, 109));
@@ -257,6 +298,160 @@ public class TelaQuestao extends javax.swing.JFrame {
         telaQuestaoC.desistir(this);
     }//GEN-LAST:event_btnDesistirMouseClicked
 
+    private void txtAltAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAltAMouseClicked
+        txtAltA.setForeground(new Color(0, 0, 0));
+        txtAltB.setForeground(new Color(150, 150, 150));
+        txtAltC.setForeground(new Color(150, 150, 150));
+        txtAltD.setForeground(new Color(150, 150, 150));
+        txtAltE.setForeground(new Color(150, 150, 150));
+        atualizarQuestaoSelecionada("A");
+    }//GEN-LAST:event_txtAltAMouseClicked
+
+    private void txtAltBMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAltBMouseClicked
+        txtAltA.setForeground(new Color(150, 150, 150));
+        txtAltB.setForeground(new Color(0, 0, 0));
+        txtAltC.setForeground(new Color(150, 150, 150));
+        txtAltD.setForeground(new Color(150, 150, 150));
+        txtAltE.setForeground(new Color(150, 150, 150));
+        atualizarQuestaoSelecionada("B");
+    }//GEN-LAST:event_txtAltBMouseClicked
+
+    private void txtAltCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAltCMouseClicked
+        txtAltA.setForeground(new Color(150, 150, 150));
+        txtAltB.setForeground(new Color(150, 150, 150));
+        txtAltC.setForeground(new Color(0, 0, 0));
+        txtAltD.setForeground(new Color(150, 150, 150));
+        txtAltE.setForeground(new Color(150, 150, 150));
+        atualizarQuestaoSelecionada("C");
+    }//GEN-LAST:event_txtAltCMouseClicked
+
+    private void txtAltDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAltDMouseClicked
+        txtAltA.setForeground(new Color(150, 150, 150));
+        txtAltB.setForeground(new Color(150, 150, 150));
+        txtAltC.setForeground(new Color(150, 150, 150));
+        txtAltD.setForeground(new Color(0, 0, 0));
+        txtAltE.setForeground(new Color(150, 150, 150));
+        atualizarQuestaoSelecionada("D");
+    }//GEN-LAST:event_txtAltDMouseClicked
+
+    private void txtAltEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAltEMouseClicked
+        txtAltA.setForeground(new Color(150, 150, 150));
+        txtAltB.setForeground(new Color(150, 150, 150));
+        txtAltC.setForeground(new Color(150, 150, 150));
+        txtAltD.setForeground(new Color(150, 150, 150));
+        txtAltE.setForeground(new Color(0, 0, 0));
+        atualizarQuestaoSelecionada("E");
+    }//GEN-LAST:event_txtAltEMouseClicked
+
+    private void btnProximoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProximoMouseClicked
+        if(this.questaoAtual<9){
+            this.questaoAtual++;
+            this.txtDescricao.setText("<html>"+(this.questaoAtual+1)+") "+TelaQuestaoController.getQuestao()[this.questaoAtual].getDescricao()+"<br><br></html>");
+            this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0].getDescricao()+"</html>");
+            this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1].getDescricao()+"</html>");
+            this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2].getDescricao()+"</html>");
+            this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3].getDescricao()+"</html>");
+            this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4].getDescricao()+"</html>");
+            this.atualizarNavegacao();
+            this.marcarQuestao(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlternativaEscolhida());
+        }else{
+            //TODO
+            System.out.println("resultado");
+        }
+    }//GEN-LAST:event_btnProximoMouseClicked
+
+    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
+        if(this.questaoAtual>0){
+            this.questaoAtual--;
+            this.txtDescricao.setText("<html>"+(this.questaoAtual+1)+") "+TelaQuestaoController.getQuestao()[this.questaoAtual].getDescricao()+"<br><br></html>");
+            this.txtAltA.setText("<html>A) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0].getDescricao()+"</html>");
+            this.txtAltB.setText("<html>B) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1].getDescricao()+"</html>");
+            this.txtAltC.setText("<html>C) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2].getDescricao()+"</html>");
+            this.txtAltD.setText("<html>D) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3].getDescricao()+"</html>");
+            this.txtAltE.setText("<html>E) "+TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4].getDescricao()+"</html>");
+            this.atualizarNavegacao();
+            this.marcarQuestao(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlternativaEscolhida());
+        }
+    }//GEN-LAST:event_btnAnteriorMouseClicked
+
+    private void atualizarNavegacao(){
+        if(this.questaoAtual==0){
+            btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior-vazio.png")));
+        }else{
+            btnAnterior.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-anterior.png")));
+        }
+        
+        if(this.questaoAtual==9){
+            btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-resultado.png")));
+        }else{
+            btnProximo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/resources/btn-proximo.png")));
+        }
+        
+        this.txtNavegacao.setText((this.questaoAtual+1)+"/10");
+    }
+    
+    private void atualizarQuestaoSelecionada(String alternativa){
+        switch(alternativa){
+            case "A":
+                TelaQuestaoController.getQuestao()[this.questaoAtual].setAlternativaEscolhida(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0]);
+                break;
+            case "B":
+                TelaQuestaoController.getQuestao()[this.questaoAtual].setAlternativaEscolhida(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1]);
+                break;
+            case "C":
+                TelaQuestaoController.getQuestao()[this.questaoAtual].setAlternativaEscolhida(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2]);
+                break;
+            case "D":
+                TelaQuestaoController.getQuestao()[this.questaoAtual].setAlternativaEscolhida(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3]);
+                break;
+            case "E":
+                TelaQuestaoController.getQuestao()[this.questaoAtual].setAlternativaEscolhida(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4]);
+                break;
+        }
+    }
+    
+    private void marcarQuestao(Alternativa alternativa){
+        if(alternativa==null){
+            txtAltA.setForeground(new Color(0, 0, 0));
+            txtAltB.setForeground(new Color(0, 0, 0));
+            txtAltC.setForeground(new Color(0, 0, 0));
+            txtAltD.setForeground(new Color(0, 0, 0));
+            txtAltE.setForeground(new Color(0, 0, 0));
+        }else{
+            if(alternativa.equals(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[0])){
+                txtAltA.setForeground(new Color(0, 0, 0));
+                txtAltB.setForeground(new Color(150, 150, 150));
+                txtAltC.setForeground(new Color(150, 150, 150));
+                txtAltD.setForeground(new Color(150, 150, 150));
+                txtAltE.setForeground(new Color(150, 150, 150));
+            }else if(alternativa.equals(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[1])){
+                txtAltA.setForeground(new Color(150, 150, 150));
+                txtAltB.setForeground(new Color(0, 0, 0));
+                txtAltC.setForeground(new Color(150, 150, 150));
+                txtAltD.setForeground(new Color(150, 150, 150));
+                txtAltE.setForeground(new Color(150, 150, 150));
+            }else if(alternativa.equals(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[2])){
+                txtAltA.setForeground(new Color(150, 150, 150));
+                txtAltB.setForeground(new Color(150, 150, 150));
+                txtAltC.setForeground(new Color(0, 0, 0));
+                txtAltD.setForeground(new Color(150, 150, 150));
+                txtAltE.setForeground(new Color(150, 150, 150));
+            }else if(alternativa.equals(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[3])){
+                txtAltA.setForeground(new Color(150, 150, 150));
+                txtAltB.setForeground(new Color(150, 150, 150));
+                txtAltC.setForeground(new Color(150, 150, 150));
+                txtAltD.setForeground(new Color(0, 0, 0));
+                txtAltE.setForeground(new Color(150, 150, 150));
+            }else if(alternativa.equals(TelaQuestaoController.getQuestao()[this.questaoAtual].getAlts()[4])){
+                txtAltA.setForeground(new Color(150, 150, 150));
+                txtAltB.setForeground(new Color(150, 150, 150));
+                txtAltC.setForeground(new Color(150, 150, 150));
+                txtAltD.setForeground(new Color(150, 150, 150));
+                txtAltE.setForeground(new Color(0, 0, 0));
+            }
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

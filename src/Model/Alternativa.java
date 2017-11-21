@@ -9,14 +9,18 @@ package Model;
  *
  * @author Rodrigo Golfeto
  */
-class Alternativa {
+public class Alternativa {
     
     private String descricao;
-    private boolean correta;
+    private boolean resultado;
 
-    public Alternativa(String descricao, boolean correta) {
+    public Alternativa(){
+        
+    }
+    
+    public Alternativa(String descricao, boolean resultado) {
         this.descricao = descricao;
-        this.correta = correta;
+        this.resultado = resultado;
     }
 
     public String getDescricao() {
@@ -27,14 +31,16 @@ class Alternativa {
         this.descricao = descricao;
     }
 
-    public boolean isCorreta() {
-        return correta;
+    public boolean isResultado() {
+        return resultado;
     }
 
-    public void setCorreta(boolean correta) {
-        this.correta = correta;
+    public void setResultado(boolean resultado) {
+        this.resultado = resultado;
     }
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Alternativa{" + "descricao=" + descricao + ", resultado=" + resultado + '}';
+    }    
 }
