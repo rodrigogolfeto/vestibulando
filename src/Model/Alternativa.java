@@ -23,6 +23,12 @@ public class Alternativa {
         this.resultado = resultado;
     }
 
+    public Alternativa(int id, String descricao, boolean resultado) {
+        this.id = id;
+        this.descricao = descricao;
+        this.resultado = resultado;
+    }
+
     public int getId() {
         return id;
     }

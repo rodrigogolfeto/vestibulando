@@ -236,7 +236,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfiguracaoActionPerformed
         super.dispose();
-        TelaConfiguracao.main(null);
+        
+        if(UsuarioController.getUsuarioLogado().getAdministrador().equals("S")){
+            TelaListarQuestao.main(null);
+        }else{
+            TelaConfiguracao.main(null);
+        }        
     }//GEN-LAST:event_btnConfiguracaoActionPerformed
 
     private void btnFecharSessaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFecharSessaoMouseClicked

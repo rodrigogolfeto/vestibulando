@@ -12,19 +12,48 @@ public class Questao {
     private int id;
     private String descricao;
     private Alternativa alts[];
-    private int totalAlternativas = 0;
+    private Categoria categoria;
     private Alternativa alternativaEscolhida;
     private Date dataInicial;
+    private int totalAlternativas = 0;
 
     public Questao() {
         this.alts = new Alternativa[5];
         dataInicial = new Date();
     }
 
+    public Questao(int id, String descricao) {
+        this.id = id;
+        this.descricao = descricao;
+    }
+
     public Questao(String descricao, Alternativa[] alts) {
         this.descricao = descricao;
         this.alts = new Alternativa[5];
         dataInicial = new Date();
+    }
+
+    public Questao(int id, String descricao, Alternativa[] alts) {
+        this.id = id;
+        this.descricao = descricao;
+        this.alts = new Alternativa[5];
+        dataInicial = new Date();
+    }
+
+    public Questao(int id, String descricao, Alternativa[] alts, Categoria categoria) {
+        this.id = id;
+        this.descricao = descricao;
+        this.alts = alts;
+        this.categoria = categoria;
+    }
+
+    public Questao(int id, String descricao, Alternativa[] alts, Categoria categoria, Alternativa alternativaEscolhida, Date dataInicial) {
+        this.id = id;
+        this.descricao = descricao;
+        this.alts = alts;
+        this.categoria = categoria;
+        this.alternativaEscolhida = alternativaEscolhida;
+        this.dataInicial = dataInicial;
     }
 
     public int getId() {
@@ -51,7 +80,7 @@ public class Questao {
         this.alts = alts;
     }
 
-    public void adicionarAlternativa(int id,String descricao, boolean resultado) {
+    public void adicionarAlternativa(int id, String descricao, boolean resultado) {
         alts[totalAlternativas] = new Alternativa();
         alts[totalAlternativas].setId(id);
         alts[totalAlternativas].setDescricao(descricao);
@@ -81,5 +110,13 @@ public class Questao {
 
     public void setDataInicial(Date dataInicial) {
         this.dataInicial = dataInicial;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
