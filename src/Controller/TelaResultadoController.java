@@ -104,11 +104,11 @@ public class TelaResultadoController extends AbstractFactory {
         
         try {
             dao.conectar();
-            PreparedStatement rs = dao.connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement rs = dao.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             rs.executeUpdate();
             ResultSet r = rs.getGeneratedKeys();
             int lastId = 0;
-            if(r.next()){
+            if (r.next()) {
                 lastId = r.getInt(1);
             }
             

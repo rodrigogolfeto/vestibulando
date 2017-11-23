@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.TelaFormularioQuestaoController;
 import Controller.TelaListarQuestaoController;
 import Controller.UsuarioController;
 import Model.Questao;
@@ -18,23 +19,28 @@ public class TelaListarQuestao extends javax.swing.JFrame {
 
     TelaListarQuestaoController telaListarQuestaoController;
     DefaultTableModel modelo;
+    private int idSelecionado;
 
     public TelaListarQuestao() {
+        this.setIdSelecionado(0);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         txtUsuario.setText(UsuarioController.getUsuarioLogado().getNome());
+        
+        this.carregaFormulario();
+    }
+
+    public void carregaFormulario(){
         telaListarQuestaoController = new TelaListarQuestaoController();
         modelo = new DefaultTableModel(new Object[]{"ID", "Descrição", "Categoria"}, 0);
-
         telaListarQuestaoController.listarQuestao().forEach((questao) -> {
             Object linha[] = new Object[]{questao.getId(), questao.getDescricao(), questao.getCategoria().getNome()};
             modelo.addRow(linha);
         });
-
         listaQuestoes.setModel(modelo);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -61,7 +67,6 @@ public class TelaListarQuestao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1024, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1024, 600));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(1024, 600));
@@ -114,10 +119,20 @@ public class TelaListarQuestao extends javax.swing.JFrame {
         btnEditar.setText("Editar");
         btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.setEnabled(false);
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnExcluir.setEnabled(false);
+        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirMouseClicked(evt);
+            }
+        });
 
         listaQuestoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,6 +158,11 @@ public class TelaListarQuestao extends javax.swing.JFrame {
             }
         });
         listaQuestoes.getTableHeader().setReorderingAllowed(false);
+        listaQuestoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaQuestoesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaQuestoes);
         if (listaQuestoes.getColumnModel().getColumnCount() > 0) {
             listaQuestoes.getColumnModel().getColumn(0).setResizable(false);
@@ -261,10 +281,48 @@ public class TelaListarQuestao extends javax.swing.JFrame {
 
     private void btnCadastrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadastrarMouseClicked
         // TODO add your handling code here:
+        TelaFormularioQuestaoController.setOperacao("novo");
         super.dispose();
         TelaFormularioQuestao.main(null);
     }//GEN-LAST:event_btnCadastrarMouseClicked
 
+    private void listaQuestoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaQuestoesMouseClicked
+        int index = listaQuestoes.getSelectedRow();
+        if(index>=0 && index<telaListarQuestaoController.listarQuestao().size()){
+            Questao questao = telaListarQuestaoController.listarQuestao().get(index);
+            this.setIdSelecionado(questao.getId());
+            btnEditar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        }  
+    }//GEN-LAST:event_listaQuestoesMouseClicked
+
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        if(this.getIdSelecionado()>0){
+            telaListarQuestaoController.editarItem(this.getIdSelecionado());
+            super.dispose();
+            TelaFormularioQuestao.main(null);
+        }
+    }//GEN-LAST:event_btnEditarMouseClicked
+
+    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
+        if(this.getIdSelecionado()>0){
+            telaListarQuestaoController.excluirItem(this.getIdSelecionado());
+            this.carregaFormulario();
+            btnEditar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnExcluirMouseClicked
+
+    public int getIdSelecionado() {
+        return idSelecionado;
+    }
+
+    public void setIdSelecionado(int idSelecionado) {
+        this.idSelecionado = idSelecionado;
+    }
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -293,10 +351,8 @@ public class TelaListarQuestao extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaListarQuestao().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new TelaListarQuestao().setVisible(true);
         });
     }
 

@@ -50,9 +50,9 @@ public class TelaQuestaoController extends AbstractFactory {
         String sql;
         
         if(numCategoria>0){
-            sql = "SELECT * FROM questao WHERE que_cat_id='"+numCategoria+"' ORDER BY RAND() LIMIT 10";
+            sql = "SELECT * FROM questao WHERE que_cat_id='"+numCategoria+"' AND que_excluido='N' ORDER BY RAND() LIMIT 10";
         }else{
-            sql = "SELECT * FROM questao ORDER BY RAND() LIMIT 10";
+            sql = "SELECT * FROM questao WHERE que_excluido='N' ORDER BY RAND() LIMIT 10";
         }
         
         try {

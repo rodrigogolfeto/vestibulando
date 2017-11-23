@@ -5,17 +5,17 @@
  */
 package Controller;
 
-import static Controller.UsuarioController.setDataAtual;
 import Model.AbstractFactory;
 import Model.Alternativa;
 import Model.Categoria;
 import Model.Questao;
-import Model.Usuario;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +29,7 @@ public class TelaListarQuestaoController extends AbstractFactory {
     public ArrayList<Questao> listarQuestao() {
         dao.conectar();
 
-        String sql = "SELECT que_id,que_descricao,cat_id,cat_nome FROM questao,categoria WHERE que_cat_id=cat_id";
+        String sql = "SELECT que_id,que_descricao,cat_id,cat_nome FROM questao,categoria WHERE que_cat_id=cat_id AND  que_excluido='N' ORDER BY que_id DESC";
         String sql_alternativa = "";
         int controla_alternativa = 0;
         boolean resposta_alternativa = false;
@@ -75,5 +75,28 @@ public class TelaListarQuestaoController extends AbstractFactory {
         }
 
         return listaQuestao;
+    }
+    
+    public void excluirItem(int cid){
+        try {
+            dao.conectar();
+            
+            //alterar parametro excluir questao
+            String sql_questao = "UPDATE questao SET que_excluido='S' WHERE que_id='"+cid+"'";
+            PreparedStatement resultado_questao = dao.connection.prepareStatement(sql_questao, Statement.RETURN_GENERATED_KEYS);
+            resultado_questao.executeUpdate();
+            
+            //alterar parametro excluir alternativa
+            String sql_alternativa = "UPDATE alternativa SET alt_excluido='S' WHERE alt_que_id='"+cid+"'";
+            PreparedStatement resultado_alternativa = dao.connection.prepareStatement(sql_alternativa, Statement.RETURN_GENERATED_KEYS);
+            resultado_alternativa.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaListarQuestaoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void editarItem(int cid){
+        TelaFormularioQuestaoController.setOperacao("editar");
+        TelaFormularioQuestaoController.setCidAlterar(cid);
     }
 }
