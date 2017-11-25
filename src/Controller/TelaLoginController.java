@@ -14,12 +14,13 @@ import javax.swing.JFrame;
  */
 public class TelaLoginController {
     
-    public void acessar(String login, String senha, JFrame telaLogin) {
+    public boolean acessar(String login, String senha, JFrame telaLogin) {
         if(UsuarioController.autenticarCredenciais(login, senha)){
             telaLogin.dispose();
             TelaPrincipal.main(null);
+            return true;
         }else{
-            System.out.println("ERRO");
+            return false;
         }     
     }
 }

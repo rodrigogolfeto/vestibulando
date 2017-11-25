@@ -14,8 +14,9 @@ import javax.swing.JFrame;
  */
 public class TelaPrincipalController {
     public void acessarQuestao(String categoria, JFrame telaPrincipal) {
-        TelaQuestaoController.montarQuestoes(categoria);
-        telaPrincipal.dispose();
-        TelaQuestao.main(null);        
+        if(TelaQuestaoController.montarQuestoes(categoria)>=10){
+            telaPrincipal.dispose();
+            TelaQuestao.main(null);
+        }
     }
 }

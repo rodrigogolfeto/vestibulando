@@ -22,8 +22,10 @@ public class TelaQuestaoController extends AbstractFactory {
     private static AbstractFactory dao = new AbstractFactory();
     private static Questao questao[];
     
-    public static synchronized void montarQuestoes(String categoria){
+    public static synchronized int montarQuestoes(String categoria){
+        
         int numCategoria;
+        int qtdQuestao = 0;
         
         switch(categoria){
             case "CNT":
@@ -59,7 +61,7 @@ public class TelaQuestaoController extends AbstractFactory {
             ResultSet resultado = dao.connection.prepareStatement(sql).executeQuery();
             int i=0;
             while(resultado.next()){
-                
+                qtdQuestao++;
                 questao[i] = new Questao();
                 
                 //Descricao da questao
@@ -89,6 +91,7 @@ public class TelaQuestaoController extends AbstractFactory {
         } catch (SQLException ex) {
             System.out.println("Erro ao fechar conexão!");
         }
+        return qtdQuestao;
     }
 
     public static Questao[] getQuestao() {
